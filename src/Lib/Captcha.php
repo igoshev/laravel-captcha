@@ -40,6 +40,9 @@ class Captcha {
 		if (!is_null(Config::get('captcha'))) {
 			$this->params = array_merge($defaultParams, Config::get('captcha'));
 		}
+		else {
+			$this->params = $defaultParams;
+		}
 
 		$this->params['font'] = __DIR__ . '/../Resourses/Fonts/'. $this->params['font'] .'/'. $this->params['font'] .'.ttf';
 		$this->params['background'] = is_array($this->params['background']) ? $this->params['background'] : [$this->params['background']];
