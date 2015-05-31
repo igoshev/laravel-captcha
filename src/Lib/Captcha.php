@@ -24,12 +24,12 @@ class Captcha {
 	{
 		$defaultParams = [
 			'font' => 'DroidSerif', //Font
-			'fontSize' => 24, //Font size
-			'letterSpacing' => 18, //Letter spacing
+			'fontSize' => 26, //Font size
+			'letterSpacing' => 2, //Letter spacing
 			'length' => [4, 5], //Code Length
 			'chars' => 'QSFHTRPAJKLMZXCVBNabdefhxktyzj23456789', //Displayed symbols
-			'width' => 140, //Image Size
-			'height' => 54, //Image Size
+			'width' => 180, //Image Size
+			'height' => 50, //Image Size
 			'background' => 'f2f2f2', //The background Captcha
 			'colors' => ['27ae60','2980b9','8e44ad','2c3e50'], //Colors characters
 			'scratches' => 30, //The number of scratches displayed in the Captcha
