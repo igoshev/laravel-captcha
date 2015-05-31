@@ -128,7 +128,6 @@ return [
 	| Enter the different characters.
 	|
 	*/
-
 	'chars' => 'QSFHTRPAJKLMZXCVBNabdefhxktyzj23456789',
 
 	/*
