@@ -6,7 +6,7 @@ Note: If you do not have Composer yet, you can install it by following the instr
 ```json
 {
     "require": {
-        "bonecms/laravel-captcha": "1.*"
+        "bonecms/laravel-captcha": "1.0.*@dev"
     },
 }
 ```
