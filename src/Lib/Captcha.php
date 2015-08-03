@@ -61,7 +61,7 @@ class Captcha {
 		    $str .= $this->params['chars'][mt_rand(1, strlen($this->params['chars']) - 1)];
 		}
 		
-		Session::flash('captcha', $str);
+		Session::flash('captcha', strtolower($str));
 
 		$generator = $this->styles[$this->params['style']];
 		$content = (new $generator())->render($str, $this->params);
@@ -80,7 +80,11 @@ class Captcha {
 	 */
 	public function validate($code)
 	{
-		return (is_string($code) && Session::get('captcha') === $code);
+		$res = (is_string($code) && Session::get('captcha') === strtolower($code));
+		if ($res) {
+			Session::flash('captcha_checked', true);
+		}
+		return $res;
 	}
 
 	/**
