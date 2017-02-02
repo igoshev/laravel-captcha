@@ -1,9 +1,13 @@
-<?php namespace LaravelCaptcha\Providers;
+<?php
 
+namespace LaravelCaptcha\Providers;
+
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
+use LaravelCaptcha\Captcha\Captcha;
 
-class LaravelCaptchaServiceProvider extends ServiceProvider {
-
+class LaravelCaptchaServiceProvider extends ServiceProvider
+{
 	/**
 	 * Indicates if loading of the provider is deferred.
 	 *
@@ -19,6 +23,12 @@ class LaravelCaptchaServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		include __DIR__ . '/../routes.php';
+
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'bone_captcha');
+
+        Validator::extend('bone_captcha', function ($attribute, $value, $parameters, $validator) {
+            return $this->app['bone_captcha']->validate($value);
+        }, trans('bone_captcha::trans.incorrect_code'));
 	}
 
 	/**
@@ -28,7 +38,9 @@ class LaravelCaptchaServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-
+        $this->app->singleton('bone_captcha', function ($app) {
+            return new Captcha();
+        });
 	}
 
 	/**

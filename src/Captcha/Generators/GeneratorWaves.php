@@ -1,9 +1,12 @@
-<?php namespace LaravelCaptcha\Lib;
+<?php
 
-class CaptchaWaves implements CaptchaInterface {
+namespace LaravelCaptcha\Captcha\Generators;
 
+class GeneratorWaves implements GeneratorInterface
+{
 	/**
 	 * Color converter - HEX to RGB.
+     *
 	 * @param string $hex Color.
 	 * @return array
 	 */
@@ -17,7 +20,7 @@ class CaptchaWaves implements CaptchaInterface {
 	}
 
 	/**
-	 * @see CaptchaInterface
+	 * @inheritdoc
 	 */
 	public function render($str, $params)
 	{
@@ -37,19 +40,41 @@ class CaptchaWaves implements CaptchaInterface {
 		//Print text
 		$x = ($params['width'] - strlen($str) * ($params['letterSpacing'] + $params['fontSize'] * 0.66)) / 2;
 		for ($i = 0; $i < strlen($str); $i++) {
-		    ImageTTFtext($img1, $params['fontSize'], 0, $x, ceil(($params['height'] + $params['fontSize']) / 2), imagecolorallocate($img1, $textColor['r'], $textColor['g'], $textColor['b']), $params['font'], $str[$i]);
+		    ImageTTFtext(
+		        $img1,
+                $params['fontSize'],
+                0,
+                $x,
+                ceil(($params['height'] + $params['fontSize']) / 2),
+                imagecolorallocate($img1, $textColor['r'], $textColor['g'], $textColor['b']),
+                $params['font'],
+                $str[$i]
+            );
 		    $x += ceil($params['fontSize'] * 0.66) + $params['letterSpacing'];
 		}
 
 		//Scratches (background color)
 		for ($i = 0; $i < $params['scratches']; $i++) {
 			$k = floor($params['width'] / 10);
-			imageline($img1, floor($params['width'] / $params['scratches'] * $i), mt_rand(1, $params['height']), floor($params['width'] / $params['scratches'] * $i) + $k, mt_rand(1, $params['height']), imagecolorallocate($img1, $bgColor['r'], $bgColor['g'], $bgColor['b']));
+			imageline(
+			    $img1,
+                floor($params['width'] / $params['scratches'] * $i),
+                mt_rand(1, $params['height']),
+                floor($params['width'] / $params['scratches'] * $i) + $k,
+                mt_rand(1, $params['height']),
+                imagecolorallocate($img1, $bgColor['r'], $bgColor['g'], $bgColor['b'])
+            );
 		}
 
 		//Scratch (text color)
-		imageline($img1, mt_rand(0, floor($params['width'] / 2)), mt_rand(1, $params['height']), mt_rand(floor($params['width'] / 2), $params['width']), mt_rand(1, $params['height']), imagecolorallocate($img1, $textColor['r'], $textColor['g'], $textColor['b']));
-
+		imageline(
+		    $img1,
+            mt_rand(0, floor($params['width'] / 2)),
+            mt_rand(1, $params['height']),
+            mt_rand(floor($params['width'] / 2), $params['width']),
+            mt_rand(1, $params['height']),
+            imagecolorallocate($img1, $textColor['r'], $textColor['g'], $textColor['b'])
+        );
 
 		$sxR1 = mt_rand(7, 10) / 120;
 		$syR1 = mt_rand(7, 10) / 120;
@@ -66,7 +91,6 @@ class CaptchaWaves implements CaptchaInterface {
 		
 		for ($x = 0; $x < $params['width']; $x++) {
 			for ($y = 0; $y < $params['height']; $y++) {
-
 				$sx = $x + (sin($x * $sxR1 + $sxF1) + sin($y * $sxR2 + $sxF2)) * $sxA;
 				$sy = $y + (sin($x * $syR1 + $syF1) + sin($y * $syR2 + $syF2)) * $syA;
 			
@@ -74,8 +98,7 @@ class CaptchaWaves implements CaptchaInterface {
 					$r = $rX = $rY = $rXY = $bgColor['r'];
 					$g = $gX = $gY = $gXY = $bgColor['g'];
 					$b = $bX = $bY = $bXY = $bgColor['b'];
-				}
-				else {
+				} else {
 					$rgb = imagecolorat($img1, $sx, $sy);
 					$r = ($rgb >> 16) & 0xFF;
 					$g = ($rgb >> 8) & 0xFF;
@@ -97,10 +120,17 @@ class CaptchaWaves implements CaptchaInterface {
 					$bXY = $rgb & 0xFF;
 				}
 
-				if ($r == $rX && $r == $rY && $r == $rXY
-					&& $g == $gX && $g == $gY && $g == $gXY
-					&& $b == $bX && $b == $bY && $b == $bXY) {
-					
+				if (
+				    $r == $rX &&
+                    $r == $rY &&
+                    $r == $rXY &&
+                    $g == $gX &&
+                    $g == $gY &&
+                    $g == $gXY &&
+                    $b == $bX &&
+                    $b == $bY &&
+                    $b == $bXY
+                ) {
 					if ($r == $bgColor['r'] && $g == $bgColor['g'] && $b == $bgColor['b']) {
 						$newR = $bgColor['r'];
 						$newG = $bgColor['g'];
@@ -145,5 +175,4 @@ class CaptchaWaves implements CaptchaInterface {
 
 		return $content;
 	}
-
 }

@@ -1,41 +1,37 @@
 # Captcha integration for the Laravel 5
 ##Installing Laravel Captcha Composer Package
 Note: If you do not have Composer yet, you can install it by following the instructions on https://getcomposer.org
-####Step 1. Open composer.json file and add the following 
-{LARAVEL_ROOT}/composer.json:
-```json
-{
-    "require": {
-        "bonecms/laravel-captcha": "1.*"
-    },
-}
+####Step 1. Install package
+```bash
+composer require bonecms/laravel-captcha
 ```
 ####Step 2. Register the Laravel Captcha service provider
 {LARAVEL_ROOT}/config/app.php:
 ```php
 'providers' => [
     ...
-    "LaravelCaptcha\Providers\LaravelCaptchaServiceProvider"
+    LaravelCaptcha\Providers\LaravelCaptchaServiceProvider::class
 ],
 ```
-####Step 3. Install the Laravel Captcha Composer Package
-Run the following command in your application's root directory:
-```
-composer update
-```
+####Step 3. Only 5.2 and more. 
+It must be specified middleware "web" where the captcha validation.
+Since version 5.3 routes contains middleware "web" already. It defined by the provider "App\ProvidersRouteServiceProvider".
+
 ##Using Laravel Captcha
 Generate a Captcha markup in your Controller:
 ```php
-<?php namespace App\Http\Controllers;
+<?php 
+
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use LaravelCaptcha\Lib\Captcha;
+use LaravelCaptcha\Facades\Captcha;
 
-class MyController extends Controller {
-
+class MyController extends Controller 
+{
     public function getExample() 
     {
-        return view('myView', ['captcha' => (new Captcha)->html()]);
+        return view('myView', ['captcha' => Captcha::html()]);
     }
 
 }
@@ -49,31 +45,29 @@ Showing a Captcha in a View:
 ```
 Check user input during form submission:
 ```php
-<?php namespace App\Http\Controllers;
+<?php 
+
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Request;
-use LaravelCaptcha\Lib\Captcha;
+use Illuminate\Http\Request;
+use LaravelCaptcha\Facades\Captcha;
 
-class MyController extends Controller {
-
+class MyController extends Controller 
+{
     public function getExample() 
     {
-        return view('myView', ['captcha' => (new Captcha)->html()]);
+        return view('myView', ['captcha' => Captcha::html()]);
     }
 
-    public function postExample()
+    public function postExample(Request $request)
     {
-    	$code = Request::input('captcha');
+    	$this->validate($request, [
+            'captcha' => 'required|bone_captcha'
+        ]);
 
-	    if ((new Captcha)->validate($code)) {
-	    	// Validation passed
-	    } 
-	    else {
-	    	// Validation failed
-	    }
+	    // Validation passed
     }
-
 }
 ```
 ##Captcha configuration
