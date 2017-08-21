@@ -1,0 +1,6 @@
+<img src="{{ $route }}"
+     alt="https://github.com/bonecms/laravel-captcha"
+     style="cursor:pointer;width:{{ $width }}px;height:{{ $height }}px;"
+     title="{{ $title }}"
+     onclick="this.setAttribute('src','{{ $route }}?_='+Math.random());var captcha=document.getElementById('{{ $inputId }}');if(captcha){captcha.focus()}"
+>
