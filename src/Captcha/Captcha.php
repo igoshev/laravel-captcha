@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelCaptcha\Captcha;
+namespace Bone\Captcha\Captcha;
 
 use Illuminate\Support\Facades\Session;
-use LaravelCaptcha\Captcha\Generators\GeneratorInterface;
+use Bone\Captcha\Captcha\Generators\GeneratorInterface;
 
 class Captcha
 {
@@ -25,7 +25,7 @@ class Captcha
 	 * @var array.
 	 */
 	private $styles = [
-		'wave' => 'LaravelCaptcha\Captcha\Generators\GeneratorWaves',
+		'wave' => \Bone\Captcha\Captcha\Generators\GeneratorWaves::class,
 	];
 
 	public function __construct()

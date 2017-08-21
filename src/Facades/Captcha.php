@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelCaptcha\Facades;
+namespace Bone\Captcha\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

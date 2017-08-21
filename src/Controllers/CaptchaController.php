@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelCaptcha\Controllers;
+namespace Bone\Captcha\Controllers;
 
 use App\Http\Controllers\Controller;
-use LaravelCaptcha\Facades\Captcha;
+use Bone\Captcha\Facades\Captcha;
 
 class CaptchaController extends Controller
 {

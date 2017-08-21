@@ -15,16 +15,16 @@
         "source": "https://github.com/bonecms/laravel-captcha"
     },
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=7.0.0"
     },
     "autoload": {
         "psr-4": {
-            "LaravelCaptcha\\": "src/"
+            "Bone\\Captcha\\": "src/"
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "2.0-dev"
         }
     }
 }

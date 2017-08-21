@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelCaptcha\Captcha\Generators;
+namespace Bone\Captcha\Captcha\Generators;
 
 class GeneratorWaves implements GeneratorInterface
 {
@@ -10,7 +10,7 @@ class GeneratorWaves implements GeneratorInterface
 	 * @param string $hex Color.
 	 * @return array
 	 */
-	private function hexToRgb($hex)
+	private function hexToRgb(string $hex): array
 	{
 		return [
 			'r' => hexdec(substr($hex, 0, 2)),
@@ -22,7 +22,7 @@ class GeneratorWaves implements GeneratorInterface
 	/**
 	 * @inheritdoc
 	 */
-	public function render($str, $params)
+	public function render(string $str, array $params): string
 	{
 		$hex = $params['background'][mt_rand(0, count($params['background']) - 1)];
 		$bgColor = $this->hexToRgb($hex);
@@ -141,8 +141,7 @@ class GeneratorWaves implements GeneratorInterface
 						$newG = $textColor['g'];
 						$newB = $textColor['b'];
 					}								
-				}
-				else {
+				} else {
 					$frsx = $sx - floor($sx);
 					$frsy = $sy - floor($sy);
 					$frsx1 = 1 - $frsx;
