@@ -1,6 +1,6 @@
 <?php
 
-namespace Bone\Captcha\Captcha\Generators;
+namespace Bone\Captcha\Captcha\Generator;
 
 interface GeneratorInterface
 {
@@ -11,5 +11,5 @@ interface GeneratorInterface
 	 * @param array $params Parameters rendering.
 	 * @return string PNG image.
 	 */
-	public function render(string $str, array $params);
+	public function render($str, $params);
 }

@@ -12,7 +12,7 @@ class CaptchaController extends Controller
      *
      * @return mixed
      */
-	public function index()
+	public function image()
 	{
 	    $image = Captcha::getImage();
 
@@ -26,10 +26,10 @@ class CaptchaController extends Controller
     /**
      * Get html <img> tag.
      *
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-	public function html()
+	public function imageTag()
 	{
-		return response(Captcha::html());
+        return Captcha::getView();
 	}
 }

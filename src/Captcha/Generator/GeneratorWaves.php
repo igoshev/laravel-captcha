@@ -1,34 +1,19 @@
 <?php
 
-namespace Bone\Captcha\Captcha\Generators;
+namespace Bone\Captcha\Captcha\Generator;
 
-class GeneratorWaves implements GeneratorInterface
+class GeneratorWaves extends AbstractGenerator implements GeneratorInterface
 {
-	/**
-	 * Color converter - HEX to RGB.
-     *
-	 * @param string $hex Color.
-	 * @return array
-	 */
-	private function hexToRgb(string $hex): array
-	{
-		return [
-			'r' => hexdec(substr($hex, 0, 2)),
-			'g' => hexdec(substr($hex, 2, 2)),
-			'b' => hexdec(substr($hex, 4, 2))
-		];
-	}
-
 	/**
 	 * @inheritdoc
 	 */
-	public function render(string $str, array $params): string
+	public function render($str, $params)
 	{
-		$hex = $params['background'][mt_rand(0, count($params['background']) - 1)];
-		$bgColor = $this->hexToRgb($hex);
+		$hexBgColor = $params['background'][mt_rand(0, count($params['background']) - 1)];
+		$bgColor = $this->hexToRgb($hexBgColor);
 	
-		$hex = $params['colors'][mt_rand(0, count($params['colors']) - 1)];
-		$textColor = $this->hexToRgb($hex);
+		$hexColors = $params['colors'][mt_rand(0, count($params['colors']) - 1)];
+		$textColor = $this->hexToRgb($hexColors);
 
 		//Prototype
 		$img1 = imagecreatetruecolor($params['width'], $params['height']);
@@ -53,28 +38,15 @@ class GeneratorWaves implements GeneratorInterface
 		    $x += ceil($params['fontSize'] * 0.66) + $params['letterSpacing'];
 		}
 
-		//Scratches (background color)
-		for ($i = 0; $i < $params['scratches']; $i++) {
-			$k = floor($params['width'] / 10);
-			imageline(
-			    $img1,
-                floor($params['width'] / $params['scratches'] * $i),
-                mt_rand(1, $params['height']),
-                floor($params['width'] / $params['scratches'] * $i) + $k,
-                mt_rand(1, $params['height']),
-                imagecolorallocate($img1, $bgColor['r'], $bgColor['g'], $bgColor['b'])
-            );
-		}
+        //Scratch (text color)
+        for ($i = 0; $i < $params['scratches'][0]; $i++) {
+            $this->drawScratch($img1, $params['width'], $params['height'], $hexColors);
+        }
 
-		//Scratch (text color)
-		imageline(
-		    $img1,
-            mt_rand(0, floor($params['width'] / 2)),
-            mt_rand(1, $params['height']),
-            mt_rand(floor($params['width'] / 2), $params['width']),
-            mt_rand(1, $params['height']),
-            imagecolorallocate($img1, $textColor['r'], $textColor['g'], $textColor['b'])
-        );
+		//Scratches (background color)
+		for ($i = 0; $i < $params['scratches'][1]; $i++) {
+			$this->drawScratch($img1, $params['width'], $params['height'], $hexBgColor);
+		}
 
 		$sxR1 = mt_rand(7, 10) / 120;
 		$syR1 = mt_rand(7, 10) / 120;
@@ -135,17 +107,16 @@ class GeneratorWaves implements GeneratorInterface
 						$newR = $bgColor['r'];
 						$newG = $bgColor['g'];
 						$newB = $bgColor['b'];
-					}
-					else {
+					} else {
 						$newR = $textColor['r'];
 						$newG = $textColor['g'];
 						$newB = $textColor['b'];
 					}								
 				} else {
-					$frsx = $sx - floor($sx);
-					$frsy = $sy - floor($sy);
-					$frsx1 = 1 - $frsx;
-					$frsy1 = 1 - $frsy;
+					$frsx   = $sx - floor($sx);
+					$frsy   = $sy - floor($sy);
+					$frsx1  = 1 - $frsx;
+					$frsy1  = 1 - $frsy;
 
 					$newR = floor($r * $frsx1 * $frsy1 +
 					           $rX * $frsx  * $frsy1 +
