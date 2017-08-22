@@ -10,40 +10,40 @@ use Bone\Captcha\Captcha\Captcha;
 
 class LaravelCaptchaServiceProvider extends ServiceProvider
 {
-	/**
-	 * Indicates if loading of the provider is deferred.
-	 *
-	 * @var bool
-	 */
-	protected $defer = true;
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = true;
 
-	/**
-	 * Bootstrap the application events.
-	 *
-	 * @return void
-	 */
-	public function boot()
-	{
+    /**
+     * Bootstrap the application events.
+     *
+     * @return void
+     */
+    public function boot()
+    {
         $this->mergeConfigFrom(__DIR__ . '/../config/bone/captcha.php', 'bone.captcha');
         $this->loadViewsFrom(__DIR__ . '/../resources/views/vendor/bone', 'bone');
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang/vendor/bone', 'bone');
 
-        $this->publishes([__DIR__ .'/../config' => config_path()], 'config');
+        $this->publishes([__DIR__ . '/../config' => config_path()], 'config');
         $this->publishes([__DIR__ . '/../resources/lang' => resource_path('lang')], 'lang');
         $this->publishes([__DIR__ . '/../resources/views' => resource_path('views')], 'views');
 
         $this->registerRoutes();
         $this->registerBladeDirectives();
         $this->registerValidator();
-	}
+    }
 
-	/**
-	 * Register the service provider.
-	 *
-	 * @return void
-	 */
-	public function register()
-	{
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
         $this->app->singleton('bone_captcha', function (Application $app) {
             $config = $app['config']['bone']['captcha'];
 
@@ -53,7 +53,7 @@ class LaravelCaptchaServiceProvider extends ServiceProvider
 
             return new Captcha($code, $storage, $generator, $config);
         });
-	}
+    }
 
     /**
      * Register the blade directives
