@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Bone\Captcha\Captcha\Captcha;
 
-class LaravelCaptchaServiceProvider extends ServiceProvider
+class BoneCaptchaServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application events.
