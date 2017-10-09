@@ -11,13 +11,6 @@ use Bone\Captcha\Captcha\Captcha;
 class LaravelCaptchaServiceProvider extends ServiceProvider
 {
     /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
-    /**
      * Bootstrap the application events.
      *
      * @return void
@@ -94,15 +87,5 @@ class LaravelCaptchaServiceProvider extends ServiceProvider
         Validator::extend('bone_captcha', function ($attribute, $value, $parameters, $validator) {
             return $this->app['bone_captcha']->validate($value);
         }, trans('bone::captcha.incorrect_code'));
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return ['bone_captcha'];
     }
 }
