@@ -3,8 +3,11 @@ Package information:
 
 [![Latest Stable Version](https://poser.pugx.org/bonecms/laravel-captcha/v/stable)](https://packagist.org/packages/bonecms/laravel-captcha)
 [![Total Downloads](https://poser.pugx.org/bonecms/laravel-captcha/downloads)](https://packagist.org/packages/bonecms/laravel-captcha)
-[![Latest Unstable Version](https://poser.pugx.org/bonecms/laravel-captcha/v/unstable)](https://packagist.org/packages/bonecms/laravel-captcha)
 [![License](https://poser.pugx.org/bonecms/laravel-captcha/license)](https://packagist.org/packages/bonecms/laravel-captcha)
+
+For Laravel 5.3 and below:
+
+[Version 1.1](https://github.com/igoshev/laravel-captcha/releases/tag/v1.1)
 
 ## Installing Laravel Captcha Composer Package
 Note: If you do not have Composer yet, you can install it by following the instructions on https://getcomposer.org
@@ -17,10 +20,10 @@ composer require bonecms/laravel-captcha
 ```php
 'providers' => [
     ...
-    LaravelCaptcha\Providers\LaravelCaptchaServiceProvider::class
+    Igoshev\Captcha\Providers\IgoshevCaptchaServiceProvider::class,
 ],
 ```
-#### Step 3. Only 5.2 and more. 
+#### Step 3. 
 It must be specified middleware "web" where the captcha validation.
 Since version 5.3 routes contains middleware "web" already. It defined by the provider "App\ProvidersRouteServiceProvider".
 
@@ -38,7 +41,7 @@ class MyController extends Controller
 {
     public function getExample() 
     {
-        return view('myView', ['captcha' => Captcha::html()]);
+        return view('myView');
     }
 
 }
@@ -46,7 +49,7 @@ class MyController extends Controller
 Showing a Captcha in a View:
 ```html
 ...
-{!! $captcha !!}
+@captcha
 <input type="text" id="captcha" name="captcha">
  ...
 ```
@@ -64,129 +67,192 @@ class MyController extends Controller
 {
     public function getExample() 
     {
-        return view('myView', ['captcha' => Captcha::html()]);
+        return view('myView');
     }
 
     public function postExample(Request $request)
     {
     	$this->validate($request, [
-            'captcha' => 'required|bone_captcha'
+            'captcha' => 'required|captcha'
         ]);
 
 	    // Validation passed
     }
 }
 ```
-## Captcha configuration
-#### Create captcha.php file and add the following
-{LARAVEL_ROOT}/config/captcha.php:
+### Captcha configuration
+```bash
+php artisan vendor:publish --provider="Igoshev\Captcha\Providers\IgoshevCaptchaServiceProvider" --tag="config"
+```
 ```php
 <?php
 
 return [
 
-	/*
-	|--------------------------------------------------------------------------
-	| Font
-	|--------------------------------------------------------------------------
-	| Supported: "DroidSerif".
-	|
-	*/
-	'font' => 'DroidSerif',
+/*
+    |--------------------------------------------------------------------------
+    | Captcha middleware
+    |--------------------------------------------------------------------------
+    |
+    */
+    'middleware' => ['web'],
 
-	/*
-	|--------------------------------------------------------------------------
-	| Font size
-	|--------------------------------------------------------------------------
-	| Font size in pixels.
-	| 
-	|
-	*/
-	'fontSize' => 26,
+    /*
+    |--------------------------------------------------------------------------
+    | Captcha routes
+    |--------------------------------------------------------------------------
+    |
+    */
+    'routes' => [
+        'image'     => 'igoshev/captcha/image',
+        'image_tag' => 'igoshev/captcha/image_tag'
+    ],
 
-	/*
-	|--------------------------------------------------------------------------
-	| Letter spacing
-	|--------------------------------------------------------------------------
-	| Spacing between letters in pixels.
-	|
-	*/
-	'letterSpacing' => 2,
+    /*
+    |--------------------------------------------------------------------------
+    | Blade directive
+    |--------------------------------------------------------------------------
+    | You can use blade directive @captcha for rendering captcha.
+    |
+    */
+    'blade' => 'captcha',
 
-	/*
-	|--------------------------------------------------------------------------
-	| Code Length
-	|--------------------------------------------------------------------------
-	| You can specify an array or integer.
-	|
-	*/
-	'length' => [4, 5],
+    /*
+    |--------------------------------------------------------------------------
+    | Validator name
+    |--------------------------------------------------------------------------
+    |
+    */
+    'validator' => 'captcha',
 
-	/*
-	|--------------------------------------------------------------------------
-	| Displayed chars
-	|--------------------------------------------------------------------------
-	| Enter the different characters.
-	|
-	*/
-	'chars' => 'QSFHTRPAJKLMZXCVBNabdefhxktyzj23456789',
+    /*
+    |--------------------------------------------------------------------------
+    | Captcha generator.
+    |--------------------------------------------------------------------------
+    | Must implement GeneratorInterface.
+    |
+    */
+    'generator' => \Igoshev\Captcha\Captcha\Generator\GeneratorWaves::class,
 
-	/*
-	|--------------------------------------------------------------------------
-	| Image Size
-	|--------------------------------------------------------------------------
-	| Captcha image size can be controlled by setting the width 
-	| and height properties.
-	| 
-	|
-	*/
-	'width' => 180,
-	'height' => 50,
+    /*
+    |--------------------------------------------------------------------------
+    | Storage code.
+    |--------------------------------------------------------------------------
+    | Must implement StorageInterface.
+    |
+    */
+    'storage' => \Igoshev\Captcha\Captcha\Storage\SessionStorage::class,
 
-	/*
-	|--------------------------------------------------------------------------
-	| Background Captcha
-	|--------------------------------------------------------------------------
-	| You can specify an array or string.
-	|
-	*/
-	'background' => 'f2f2f2',
+    /*
+    |--------------------------------------------------------------------------
+    | Code generator.
+    |--------------------------------------------------------------------------
+    | Must implement CodeInterface.
+    |
+    */
+    'code' => \Igoshev\Captcha\Captcha\Code\SimpleCode::class,
 
-	/*
-	|--------------------------------------------------------------------------
-	| Colors characters
-	|--------------------------------------------------------------------------
-	| You can specify an array or string.
-	|
-	*/
-	'colors' => '2980b9',
+    /*
+    |--------------------------------------------------------------------------
+    | Font
+    |--------------------------------------------------------------------------
+    | Supported: "DroidSerif".
+    |
+    */
+    'font' => base_path('vendor/bonecms/laravel-captcha/src/resources/fonts/DroidSerif/DroidSerif.ttf'),
 
-	/*
-	|--------------------------------------------------------------------------
-	| Scratches
-	|--------------------------------------------------------------------------
-	| The number of scratches displayed in the Captcha.
-	|
-	*/
-	'scratches' => 30,
+    /*
+    |--------------------------------------------------------------------------
+    | Font size
+    |--------------------------------------------------------------------------
+    | Font size in pixels.
+    |
+    */
+    'fontSize' => 26,
 
-	/*
-	|--------------------------------------------------------------------------
-	| Captcha style
-	|--------------------------------------------------------------------------
-	| Supported: "wave".
-	|
-	*/
-	'style' => 'wave',
+    /*
+    |--------------------------------------------------------------------------
+    | Letter spacing
+    |--------------------------------------------------------------------------
+    | Spacing between letters in pixels.
+    |
+    */
+    'letterSpacing' => 2,
 
-	/*
-	|--------------------------------------------------------------------------
-	| Id of the Captcha code input textbox
-	|--------------------------------------------------------------------------
-	| After updating the Captcha focus will be set on an element with this id.
-	|
-	*/
-	'inputId' => 'captcha',
+    /*
+    |--------------------------------------------------------------------------
+    | Code Length
+    |--------------------------------------------------------------------------
+    | You can specify an array or integer.
+    |
+    */
+    'length' => [4, 5],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Displayed chars
+    |--------------------------------------------------------------------------
+    | Enter the different characters.
+    |
+    */
+    'chars' => 'QSFHTRPAJKLMZXCVBNabdefhxktyzj23456789',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Image Size
+    |--------------------------------------------------------------------------
+    | Captcha image size can be controlled by setting the width
+    | and height properties.
+    |
+    |
+    */
+    'width'  => 180,
+    'height' => 50,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Background Captcha
+    |--------------------------------------------------------------------------
+    | You can specify an array or string.
+    |
+    */
+    'background' => 'f2f2f2',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Colors characters
+    |--------------------------------------------------------------------------
+    | You can specify an array or string.
+    |
+    */
+    'colors' => '2980b9',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Scratches
+    |--------------------------------------------------------------------------
+    | The number of scratches displayed in the Captcha.
+    |
+    */
+    'scratches' => [1, 6],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Id of the Captcha code input textbox
+    |--------------------------------------------------------------------------
+    | After updating the Captcha focus will be set on an element with this id.
+    |
+    */
+    'inputId' => 'captcha',
+    
 ];
+```
+### Localization
+```bash
+php artisan vendor:publish --provider="Igoshev\Captcha\Providers\IgoshevCaptchaServiceProvider" --tag="lang"
+```
+
+### View
+```bash
+php artisan vendor:publish --provider="Igoshev\Captcha\Providers\IgoshevCaptchaServiceProvider" --tag="views"
 ```
