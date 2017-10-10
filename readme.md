@@ -74,7 +74,7 @@ class MyController extends Controller
             'captcha' => 'required|captcha'
         ]);
 
-	    // Validation passed
+        // Validation passed
     }
 }
 ```
