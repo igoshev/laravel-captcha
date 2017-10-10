@@ -78,7 +78,7 @@ class MyController extends Controller
     }
 }
 ```
-### Captcha configuration
+### Configuration
 ```bash
 php artisan vendor:publish --provider="Igoshev\Captcha\Providers\IgoshevCaptchaServiceProvider" --tag="config"
 ```
