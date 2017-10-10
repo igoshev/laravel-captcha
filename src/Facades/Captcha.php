@@ -1,6 +1,6 @@
 <?php
 
-namespace Igoshev\Captcha\Facades;
+namespace LaravelCaptcha\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -13,6 +13,6 @@ class Captcha extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'igoshev_captcha';
+        return 'bone_captcha';
     }
 }

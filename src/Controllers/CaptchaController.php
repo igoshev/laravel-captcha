@@ -1,9 +1,9 @@
 <?php
 
-namespace Igoshev\Captcha\Controllers;
+namespace LaravelCaptcha\Controllers;
 
 use App\Http\Controllers\Controller;
-use Igoshev\Captcha\Facades\Captcha;
+use LaravelCaptcha\Facades\Captcha;
 
 class CaptchaController extends Controller
 {
@@ -12,24 +12,24 @@ class CaptchaController extends Controller
      *
      * @return mixed
      */
-    public function image()
-    {
-        $image = Captcha::getImage();
+	public function index()
+	{
+	    $image = Captcha::getImage();
 
         return response($image)->header('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT')
-            ->header('Cache-Control', 'no-store, no-cache, must-revalidate')
-            ->header('Cache-Control', 'post-check=0, pre-check=0', false)
-            ->header('Pragma', 'no-cache')
-            ->header('Content-Type', 'image/png');
-    }
+                               ->header('Cache-Control', 'no-store, no-cache, must-revalidate')
+                               ->header('Cache-Control', 'post-check=0, pre-check=0', false)
+                               ->header('Pragma', 'no-cache')
+                               ->header('Content-Type', 'image/png');
+	}
 
     /**
      * Get html <img> tag.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return mixed
      */
-    public function imageTag()
-    {
-        return Captcha::getView();
-    }
+	public function html()
+	{
+		return response(Captcha::html());
+	}
 }

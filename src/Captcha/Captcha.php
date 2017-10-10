@@ -1,56 +1,78 @@
 <?php
 
-namespace Igoshev\Captcha\Captcha;
+namespace LaravelCaptcha\Captcha;
 
-use Igoshev\Captcha\Captcha\Storage\StorageInterface;
-use Igoshev\Captcha\Captcha\Generator\GeneratorInterface;
-use Igoshev\Captcha\Captcha\Code\CodeInterface;
+use Illuminate\Support\Facades\Session;
+use LaravelCaptcha\Captcha\Generators\GeneratorInterface;
 
 class Captcha
 {
-    /**
-     * @var CodeInterface
-     */
-    private $code;
-
-    /**
-     * @var StorageInterface
-     */
-    private $storage;
-
     /**
      * @var GeneratorInterface
      */
     private $generator;
 
-    /**
-     * Captcha parameters.
+	/**
+	 * Captcha parameters.
      *
-     * @var array.
-     */
-    private $params = [];
+	 * @var array.
+	 */	
+	private $params = [];
+
+	/**
+	 * Style classes Captcha.
+     *
+	 * @var array.
+	 */
+	private $styles = [
+		'wave' => 'LaravelCaptcha\Captcha\Generators\GeneratorWaves',
+	];
+
+	public function __construct()
+	{
+		$defaultParams = [
+			'font' => 'DroidSerif', //Font
+			'fontSize' => 26, //Font size
+			'letterSpacing' => 2, //Letter spacing
+			'length' => [4, 5], //Code Length
+			'chars' => 'QSFHTRPAJKLMZXCVBNabdefhxktyzj23456789', //Displayed symbols
+			'width' => 180, //Image Size
+			'height' => 50, //Image Size
+			'background' => 'f2f2f2', //The background Captcha
+			'colors' => ['27ae60','2980b9','8e44ad','2c3e50'], //Colors characters
+			'scratches' => 30, //The number of scratches displayed in the Captcha
+			'style' => 'wave', //Captcha style
+			'inputId' => 'captcha', //Id of the Captcha code input textbox
+		];
+
+		$params = config('captcha');
+
+        $this->params = !is_null($params) ? array_merge($defaultParams, $params) : $defaultParams;
+
+		$this->params['font'] = __DIR__ . '/../resources/fonts/'. $this->params['font'] .'/'. $this->params['font'] .'.ttf';
+		$this->params['background'] = is_array($this->params['background']) ? $this->params['background'] : [$this->params['background']];
+		$this->params['colors'] = is_array($this->params['colors']) ? $this->params['colors'] : [$this->params['colors']];
+
+        $generator = $this->styles[$this->params['style']];
+        $this->generator = new $generator();
+	}
 
     /**
-     * Captcha constructor.
+     * Generate captcha code.
      *
-     * @param CodeInterface $code
-     * @param StorageInterface $storage
-     * @param GeneratorInterface $generator
-     * @param array $params
+     * @return string
      */
-    public function __construct(
-        CodeInterface $code,
-        StorageInterface $storage,
-        GeneratorInterface $generator,
-        array $params
-    ) {
-        $this->code      = $code;
-        $this->storage   = $storage;
-        $this->generator = $generator;
-        $this->params    = $params;
+    private function generateCode()
+    {
+        $length = is_array($this->params['length']) ? mt_rand($this->params['length'][0], $this->params['length'][1]) : $this->params['length'];
+        $code = '';
+        for ($i = 0; $i < $length; $i++) {
+            $code .= $this->params['chars'][mt_rand(1, strlen($this->params['chars']) - 1)];
+        }
 
-        $this->params['background'] = is_array($this->params['background']) ? $this->params['background'] : [$this->params['background']];
-        $this->params['colors']     = is_array($this->params['colors']) ? $this->params['colors'] : [$this->params['colors']];
+        session(['bone_captcha' => $code]);
+
+        return $code;
     }
 
     /**
@@ -58,49 +80,37 @@ class Captcha
      *
      * @return mixed
      */
-    public function getImage()
-    {
-        $code = $this->code->generate(
-            $this->params['chars'],
-            $this->params['length'][0],
-            $this->params['length'][1]
-        );
+	public function getImage()
+	{
+		return $this->generator->render($this->generateCode(), $this->params);
+	}
 
-        $this->storage->push($code);
-
-        return $this->generator->render($code, $this->params);
-    }
-
-    /**
-     * Captcha validation.
+	/**
+	 * Captcha validation.
      *
-     * @param string $code Code.
-     * @return bool Returns TRUE on success or FALSE on failure.
-     */
-    public function validate($code)
-    {
-        $correctCode = $this->storage->pull();
+	 * @param string $code Code.
+	 * @return bool Returns TRUE on success or FALSE on failure.
+	 */
+	public function validate($code)
+	{
+        $bone_captcha = session('bone_captcha');
 
-        if (! empty($correctCode)) {
-            return mb_strtolower($correctCode) === mb_strtolower($code);
+        Session::forget('bone_captcha');
+
+	    if (!empty($bone_captcha)) {
+            return strtolower($bone_captcha) === strtolower($code);
         }
 
         return false;
-    }
+	}
 
     /**
-     * Get html image tag.
+     * Get html image code.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return string Html image code.
      */
-    public function getView()
-    {
-        return view('igoshev::captcha.image', [
-            'route' => route('igoshev.captcha.image') . '?' . mt_rand(),
-            'title' => trans('igoshev::captcha.update_code'),
-            'width' => config('igoshev.captcha.width'),
-            'height' => config('igoshev.captcha.height'),
-            'input_id' => config('igoshev.captcha.inputId'),
-        ]);
-    }
+	public function html()
+	{
+		return '<img src="'. route('laravel-captcha') .'" alt="https://github.com/bonecms/laravel-captcha" style="cursor:pointer;width:'. $this->params['width'] .'px;height:'. $this->params['height'] .'px;" title="'.trans('bone_captcha::trans.update_code').'" onclick="this.setAttribute(\'src\',\''. route('laravel-captcha') .'?_=\'+Math.random());var captcha=document.getElementById(\''.$this->params['inputId'].'\');if(captcha){captcha.focus()}">';
+	}
 }
