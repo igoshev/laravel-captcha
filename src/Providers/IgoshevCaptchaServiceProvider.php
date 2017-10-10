@@ -18,7 +18,7 @@ class IgoshevCaptchaServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/igoshev/captcha.php', 'igoshev.captcha');
-        $this->loadViewsFrom(__DIR__ . '/../resources/views/vendor/igoshev/captcha', 'igoshev');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views/vendor/igoshev', 'igoshev');
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang/vendor/igoshev', 'igoshev');
 
         $this->publishes([__DIR__ . '/../config' => config_path()], 'config');
