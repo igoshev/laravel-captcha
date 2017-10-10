@@ -1,11 +1,11 @@
 # Captcha integration for the Laravel 5
-##Installing Laravel Captcha Composer Package
+## Installing Laravel Captcha Composer Package
 Note: If you do not have Composer yet, you can install it by following the instructions on https://getcomposer.org
-####Step 1. Install package
+#### Step 1. Install package
 ```bash
 composer require bonecms/laravel-captcha
 ```
-####Step 2. Register the Laravel Captcha service provider
+#### Step 2. Register the Laravel Captcha service provider
 {LARAVEL_ROOT}/config/app.php:
 ```php
 'providers' => [
@@ -13,11 +13,11 @@ composer require bonecms/laravel-captcha
     LaravelCaptcha\Providers\LaravelCaptchaServiceProvider::class
 ],
 ```
-####Step 3. Only 5.2 and more. 
+#### Step 3. Only 5.2 and more. 
 It must be specified middleware "web" where the captcha validation.
 Since version 5.3 routes contains middleware "web" already. It defined by the provider "App\ProvidersRouteServiceProvider".
 
-##Using Laravel Captcha
+## Using Laravel Captcha
 Generate a Captcha markup in your Controller:
 ```php
 <?php 
@@ -70,8 +70,8 @@ class MyController extends Controller
     }
 }
 ```
-##Captcha configuration
-####Create captcha.php file and add the following
+## Captcha configuration
+#### Create captcha.php file and add the following
 {LARAVEL_ROOT}/config/captcha.php:
 ```php
 <?php
