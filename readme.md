@@ -5,9 +5,7 @@ Package information:
 [![Total Downloads](https://poser.pugx.org/bonecms/laravel-captcha/downloads)](https://packagist.org/packages/bonecms/laravel-captcha)
 [![License](https://poser.pugx.org/bonecms/laravel-captcha/license)](https://packagist.org/packages/bonecms/laravel-captcha)
 
-For Laravel 5.3 and below:
-
-[Version 1.1](https://github.com/igoshev/laravel-captcha/releases/tag/v1.1)
+For Laravel 5.3 and below - [v1.1](https://github.com/igoshev/laravel-captcha/tree/1.1)
 
 ## Installing Laravel Captcha Composer Package
 Note: If you do not have Composer yet, you can install it by following the instructions on https://getcomposer.org
