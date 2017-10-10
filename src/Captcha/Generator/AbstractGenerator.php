@@ -1,6 +1,6 @@
 <?php
 
-namespace Bone\Captcha\Captcha\Generator;
+namespace Igoshev\Captcha\Captcha\Generator;
 
 abstract class AbstractGenerator
 {
@@ -19,7 +19,7 @@ abstract class AbstractGenerator
      */
     protected function hexToRgb($hex)
     {
-        if (!isset($this->colorCache[$hex])) {
+        if (! isset($this->colorCache[$hex])) {
             $this->colorCache[$hex] = [
                 'r' => hexdec(substr($hex, 0, 2)),
                 'g' => hexdec(substr($hex, 2, 2)),

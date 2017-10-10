@@ -1,10 +1,10 @@
 <?php
 
-namespace Bone\Captcha\Captcha;
+namespace Igoshev\Captcha\Captcha;
 
-use Bone\Captcha\Captcha\Storage\StorageInterface;
-use Bone\Captcha\Captcha\Generator\GeneratorInterface;
-use Bone\Captcha\Captcha\Code\CodeInterface;
+use Igoshev\Captcha\Captcha\Storage\StorageInterface;
+use Igoshev\Captcha\Captcha\Generator\GeneratorInterface;
+use Igoshev\Captcha\Captcha\Code\CodeInterface;
 
 class Captcha
 {
@@ -43,15 +43,14 @@ class Captcha
         StorageInterface $storage,
         GeneratorInterface $generator,
         array $params
-    )
-    {
-        $this->code = $code;
-        $this->storage = $storage;
+    ) {
+        $this->code      = $code;
+        $this->storage   = $storage;
         $this->generator = $generator;
-        $this->params = $params;
+        $this->params    = $params;
 
         $this->params['background'] = is_array($this->params['background']) ? $this->params['background'] : [$this->params['background']];
-        $this->params['colors'] = is_array($this->params['colors']) ? $this->params['colors'] : [$this->params['colors']];
+        $this->params['colors']     = is_array($this->params['colors']) ? $this->params['colors'] : [$this->params['colors']];
     }
 
     /**
@@ -82,7 +81,7 @@ class Captcha
     {
         $correctCode = $this->storage->pull();
 
-        if (!empty($correctCode)) {
+        if (! empty($correctCode)) {
             return mb_strtolower($correctCode) === mb_strtolower($code);
         }
 
@@ -96,12 +95,12 @@ class Captcha
      */
     public function getView()
     {
-        return view('bone::captcha.image', [
-            'route' => route('bone.captcha.image') . '?' . mt_rand(),
-            'title' => trans('bone::captcha.update_code'),
-            'width' => config('bone.captcha.width'),
-            'height' => config('bone.captcha.height'),
-            'input_id' => config('bone.captcha.inputId'),
+        return view('igoshev::captcha.image', [
+            'route' => route('igoshev.captcha.image') . '?' . mt_rand(),
+            'title' => trans('igoshev::captcha.update_code'),
+            'width' => config('igoshev.captcha.width'),
+            'height' => config('igoshev.captcha.height'),
+            'input_id' => config('igoshev.captcha.inputId'),
         ]);
     }
 }

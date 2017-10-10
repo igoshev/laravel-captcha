@@ -1,6 +1,6 @@
 <?php
 
-namespace Bone\Captcha\Captcha\Storage;
+namespace Igoshev\Captcha\Captcha\Storage;
 
 interface StorageInterface
 {

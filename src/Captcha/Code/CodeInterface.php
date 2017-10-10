@@ -1,6 +1,6 @@
 <?php
 
-namespace Bone\Captcha\Captcha\Code;
+namespace Igoshev\Captcha\Captcha\Code;
 
 interface CodeInterface
 {

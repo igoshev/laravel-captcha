@@ -1,6 +1,6 @@
 <?php
 
-namespace Bone\Captcha\Facades;
+namespace Igoshev\Captcha\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -13,6 +13,6 @@ class Captcha extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'bone_captcha';
+        return 'igoshev_captcha';
     }
 }

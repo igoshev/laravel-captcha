@@ -1,12 +1,12 @@
 <?php
 
-namespace Bone\Captcha\Captcha\Storage;
+namespace Igoshev\Captcha\Captcha\Storage;
 
 use Illuminate\Support\Facades\Session;
 
 class SessionStorage implements StorageInterface
 {
-    protected $key = 'bone_captcha';
+    protected $key = 'igoshev_captcha';
 
     /**
      * @inheritdoc
@@ -23,7 +23,7 @@ class SessionStorage implements StorageInterface
     {
         $bone_captcha = session($this->key);
 
-        if (!empty($bone_captcha)) {
+        if (! empty($bone_captcha)) {
             Session::forget($this->key);
         }
 

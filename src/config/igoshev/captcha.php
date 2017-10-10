@@ -17,9 +17,26 @@ return [
     |
     */
     'routes' => [
-        'image' => 'bone/captcha/image',
-        'image_tag' => 'bone/captcha/image_tag'
+        'image'     => 'igoshev/captcha/image',
+        'image_tag' => 'igoshev/captcha/image_tag'
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Blade directive
+    |--------------------------------------------------------------------------
+    | You can use blade directive @captcha for rendering captcha.
+    |
+    */
+    'blade' => 'captcha',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Validator name
+    |--------------------------------------------------------------------------
+    |
+    */
+    'validator' => 'captcha',
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +45,7 @@ return [
     | Must implement GeneratorInterface.
     |
     */
-    'generator' => \Bone\Captcha\Captcha\Generator\GeneratorWaves::class,
+    'generator' => \Igoshev\Captcha\Captcha\Generator\GeneratorWaves::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -37,7 +54,7 @@ return [
     | Must implement StorageInterface.
     |
     */
-    'storage' => \Bone\Captcha\Captcha\Storage\SessionStorage::class,
+    'storage' => \Igoshev\Captcha\Captcha\Storage\SessionStorage::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -46,7 +63,7 @@ return [
     | Must implement CodeInterface.
     |
     */
-    'code' => \Bone\Captcha\Captcha\Code\SimpleCode::class,
+    'code' => \Igoshev\Captcha\Captcha\Code\SimpleCode::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -103,7 +120,7 @@ return [
     |
     |
     */
-    'width' => 180,
+    'width'  => 180,
     'height' => 50,
 
     /*
