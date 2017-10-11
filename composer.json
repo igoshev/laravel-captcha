@@ -25,6 +25,11 @@
     "extra": {
         "branch-alias": {
             "dev-master": "2.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Igoshev\\Captcha\\Providers\\IgoshevCaptchaServiceProvider"
+            ]
         }
     }
 }
