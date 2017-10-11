@@ -11,7 +11,7 @@ For Laravel 5.3 and below - [v1.1](https://github.com/igoshev/laravel-captcha/tr
 Note: If you do not have Composer yet, you can install it by following the instructions on https://getcomposer.org
 #### Step 1. Install package
 ```bash
-composer require bonecms/laravel-captcha
+composer require bonecms/laravel-captcha:2.0-beta
 ```
 #### Step 2. Register the Laravel Captcha service provider
 {LARAVEL_ROOT}/config/app.php:
