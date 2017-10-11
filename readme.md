@@ -21,9 +21,6 @@ composer require bonecms/laravel-captcha
     Igoshev\Captcha\Providers\IgoshevCaptchaServiceProvider::class,
 ],
 ```
-#### Step 3. 
-It must be specified middleware "web" where the captcha validation.
-Since version 5.3 routes contains middleware "web" already. It defined by the provider "App\ProvidersRouteServiceProvider".
 
 ## Using Laravel Captcha
 Generate a Captcha markup in your Controller:
@@ -33,7 +30,7 @@ Generate a Captcha markup in your Controller:
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use LaravelCaptcha\Facades\Captcha;
+use Igoshev\Captcha\Facades\Captcha;
 
 class MyController extends Controller 
 {
@@ -59,7 +56,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use LaravelCaptcha\Facades\Captcha;
+use Igoshev\Captcha\Facades\Captcha;
 
 class MyController extends Controller 
 {
@@ -102,8 +99,8 @@ return [
     |
     */
     'routes' => [
-        'image'     => 'igoshev/captcha/image',
-        'image_tag' => 'igoshev/captcha/image_tag'
+        'image'     => 'captcha/image',
+        'image_tag' => 'captcha/image_tag'
     ],
 
     /*

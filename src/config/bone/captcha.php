@@ -17,8 +17,8 @@ return [
     |
     */
     'routes' => [
-        'image'     => 'igoshev/captcha/image',
-        'image_tag' => 'igoshev/captcha/image_tag'
+        'image'     => 'captcha/image',
+        'image_tag' => 'captcha/image_tag'
     ],
 
     /*

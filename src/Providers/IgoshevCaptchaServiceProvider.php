@@ -17,9 +17,9 @@ class IgoshevCaptchaServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/igoshev/captcha.php', 'igoshev.captcha');
-        $this->loadViewsFrom(__DIR__ . '/../resources/views/vendor/igoshev', 'igoshev');
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang/vendor/igoshev', 'igoshev');
+        $this->mergeConfigFrom(__DIR__ . '/../config/bone/captcha.php', 'bone.captcha');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views/vendor/bone', 'bone');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang/vendor/bone', 'bone');
 
         $this->publishes([__DIR__ . '/../config' => config_path()], 'config');
         $this->publishes([__DIR__ . '/../resources/lang' => resource_path('lang')], 'lang');
@@ -38,7 +38,7 @@ class IgoshevCaptchaServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('igoshev_captcha', function (Application $app) {
-            $config = $app['config']['igoshev']['captcha'];
+            $config = $app['config']['bone']['captcha'];
 
             $storage   = $app->make($config['storage']);
             $generator = $app->make($config['generator']);
@@ -59,7 +59,7 @@ class IgoshevCaptchaServiceProvider extends ServiceProvider
             return;
         }
 
-        Blade::directive(config('igoshev.captcha.blade'), function () {
+        Blade::directive(config('bone.captcha.blade'), function () {
             return "<?php echo Igoshev\\Captcha\\Facades\\Captcha::getView() ?>";
         });
     }
@@ -70,12 +70,12 @@ class IgoshevCaptchaServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         $this->app['router']->group([
-            'middleware' => config('igoshev.captcha.middleware', 'web'),
+            'middleware' => config('bone.captcha.middleware', 'web'),
             'namespace'  => 'Igoshev\Captcha\Controllers',
-            'as'         => 'igoshev.captcha.'
+            'as'         => 'bone.captcha.'
         ], function ($router) {
-            $router->get(config('igoshev.captcha.routes.image'), 'CaptchaController@image')->name('image');
-            $router->get(config('igoshev.captcha.routes.image_tag'), 'CaptchaController@imageTag')->name('image.tag');
+            $router->get(config('bone.captcha.routes.image'), 'CaptchaController@image')->name('image');
+            $router->get(config('bone.captcha.routes.image_tag'), 'CaptchaController@imageTag')->name('image.tag');
         });
     }
 
@@ -84,8 +84,8 @@ class IgoshevCaptchaServiceProvider extends ServiceProvider
      */
     protected function registerValidator()
     {
-        Validator::extend(config('igoshev.captcha.validator'), function ($attribute, $value, $parameters, $validator) {
+        Validator::extend(config('bone.captcha.validator'), function ($attribute, $value, $parameters, $validator) {
             return $this->app['igoshev_captcha']->validate($value);
-        }, trans('igoshev::captcha.incorrect_code'));
+        }, trans('bone::captcha.incorrect_code'));
     }
 }
