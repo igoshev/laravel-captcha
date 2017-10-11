@@ -25,6 +25,20 @@ composer require bonecms/laravel-captcha
 It must be specified middleware "web" where the captcha validation.
 Since version 5.3 routes contains middleware "web" already. It defined by the provider "App\ProvidersRouteServiceProvider".
 
+## Examples
+![example1](examples/image1.png)
+![example2](examples/image2.png)
+![example3](examples/image3.png)
+![example4](examples/image4.png)
+![example5](examples/image5.png)
+![example6](examples/image6.png)
+![example7](examples/image7.png)
+![example8](examples/image8.png)
+![example9](examples/image9.png)
+![example10](examples/image10.png)
+![example11](examples/image11.png)
+![example12](examples/image12.png)
+
 ## Using Laravel Captcha
 Generate a Captcha markup in your Controller:
 ```php
