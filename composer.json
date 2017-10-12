@@ -28,7 +28,7 @@
         },
         "laravel": {
             "providers": [
-                "Igoshev\\Captcha\\Providers\\IgoshevCaptchaServiceProvider"
+                "Igoshev\\Captcha\\Providers\\CaptchaServiceProvider"
             ]
         }
     }

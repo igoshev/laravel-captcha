@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Igoshev\Captcha\Captcha\Captcha;
 
-class IgoshevCaptchaServiceProvider extends ServiceProvider
+class CaptchaServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application events.

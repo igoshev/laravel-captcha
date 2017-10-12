@@ -18,7 +18,7 @@ composer require bonecms/laravel-captcha:2.0-beta
 ```php
 'providers' => [
     ...
-    Igoshev\Captcha\Providers\IgoshevCaptchaServiceProvider::class,
+    Igoshev\Captcha\Providers\CaptchaServiceProvider::class,
 ],
 ```
 
@@ -91,7 +91,7 @@ class MyController extends Controller
 ```
 ### Configuration
 ```bash
-php artisan vendor:publish --provider="Igoshev\Captcha\Providers\IgoshevCaptchaServiceProvider" --tag="config"
+php artisan vendor:publish --provider="Igoshev\Captcha\Providers\CaptchaServiceProvider" --tag="config"
 ```
 ```php
 <?php
@@ -257,11 +257,26 @@ return [
 ];
 ```
 ### Localization
+Supported languages: 
+* Chinese
+* Dutch
+* English
+* French
+* German
+* Hindi
+* Italian
+* Japanese
+* Korean
+* Persian
+* Portuguese
+* Russian
+* Spanish
+* Ukrainian
 ```bash
-php artisan vendor:publish --provider="Igoshev\Captcha\Providers\IgoshevCaptchaServiceProvider" --tag="lang"
+php artisan vendor:publish --provider="Igoshev\Captcha\Providers\CaptchaServiceProvider" --tag="lang"
 ```
 
 ### View
 ```bash
-php artisan vendor:publish --provider="Igoshev\Captcha\Providers\IgoshevCaptchaServiceProvider" --tag="views"
+php artisan vendor:publish --provider="Igoshev\Captcha\Providers\CaptchaServiceProvider" --tag="views"
 ```
