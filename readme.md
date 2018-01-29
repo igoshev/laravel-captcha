@@ -256,6 +256,7 @@ return [
 ```
 ### Localization
 Supported languages: 
+* Arabic
 * Chinese
 * Dutch
 * English
