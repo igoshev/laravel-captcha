@@ -44,7 +44,6 @@ Generate a Captcha markup in your Controller:
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Igoshev\Captcha\Facades\Captcha;
 
 class MyController extends Controller 
 {
@@ -70,7 +69,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Igoshev\Captcha\Facades\Captcha;
 
 class MyController extends Controller 
 {
