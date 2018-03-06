@@ -1,13 +1,13 @@
 {
-    "name": "bonecms/laravel-captcha",
+    "name": "ozgurkaragoz/laravel-captcha",
     "description": "Captcha integration for the Laravel 5",
     "keywords": ["captcha", "laravel captcha"],
     "license": "MIT",
     "homepage": "https://github.com/igoshev/laravel-captcha",
     "authors": [
         {
-            "name": "Dmitriy Igoshev",
-            "email": "dmitry.igo@gmail.com"
+            "name": "Özgür KARAGÖZ",
+            "email": "info@ozgurkaragoz.com.tr"
         }
     ],
     "support": {
