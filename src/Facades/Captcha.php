@@ -13,6 +13,6 @@ class Captcha extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'igoshev_captcha';
+        return \Igoshev\Captcha\Captcha\Captcha::class;
     }
 }

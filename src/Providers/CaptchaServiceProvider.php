@@ -37,7 +37,7 @@ class CaptchaServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('igoshev_captcha', function (Application $app) {
+        $this->app->singleton(Captcha::class, function (Application $app) {
             $config = $app['config']['bone']['captcha'];
 
             $storage   = $app->make($config['storage']);
@@ -85,7 +85,7 @@ class CaptchaServiceProvider extends ServiceProvider
     protected function registerValidator()
     {
         Validator::extend(config('bone.captcha.validator'), function ($attribute, $value, $parameters, $validator) {
-            return $this->app['igoshev_captcha']->validate($value);
+            return $this->app[Captcha::class]->validate($value);
         }, trans('bone::captcha.incorrect_code'));
     }
 }

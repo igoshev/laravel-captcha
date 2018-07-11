@@ -13,7 +13,7 @@ Note: If you do not have Composer yet, you can install it by following the instr
 ```bash
 composer require bonecms/laravel-captcha
 ```
-#### Step 2. Register the Laravel Captcha service provider
+#### Step 2 for Laravel 5.5 and below. Register the Laravel Captcha service provider
 {LARAVEL_ROOT}/config/app.php:
 ```php
 'providers' => [
@@ -163,10 +163,10 @@ return [
     |--------------------------------------------------------------------------
     | Font
     |--------------------------------------------------------------------------
-    | Supported: "DroidSerif".
+    | Supported: "IndiraK".
     |
     */
-    'font' => base_path('vendor/bonecms/laravel-captcha/src/resources/fonts/DroidSerif/DroidSerif.ttf'),
+    'font' => base_path('vendor/bonecms/laravel-captcha/src/resources/fonts/IndiraK.ttf'),
 
     /*
     |--------------------------------------------------------------------------
