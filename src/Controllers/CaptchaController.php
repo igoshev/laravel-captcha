@@ -2,7 +2,7 @@
 
 namespace Igoshev\Captcha\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller as Controller;
 use Igoshev\Captcha\Facades\Captcha;
 
 class CaptchaController extends Controller
