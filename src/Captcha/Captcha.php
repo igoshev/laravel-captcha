@@ -16,7 +16,7 @@ class Captcha
 	 * Captcha parameters.
      *
 	 * @var array.
-	 */	
+	 */
 	private $params = [];
 
 	/**
@@ -31,7 +31,7 @@ class Captcha
 	public function __construct()
 	{
 		$defaultParams = [
-			'font' => 'DroidSerif', //Font
+			'font' => 'IndiraK', //Font
 			'fontSize' => 26, //Font size
 			'letterSpacing' => 2, //Letter spacing
 			'length' => [4, 5], //Code Length
@@ -49,7 +49,7 @@ class Captcha
 
         $this->params = !is_null($params) ? array_merge($defaultParams, $params) : $defaultParams;
 
-		$this->params['font'] = __DIR__ . '/../resources/fonts/'. $this->params['font'] .'/'. $this->params['font'] .'.ttf';
+		$this->params['font'] = __DIR__ . '/../resources/fonts/'. $this->params['font'] .'.ttf';
 		$this->params['background'] = is_array($this->params['background']) ? $this->params['background'] : [$this->params['background']];
 		$this->params['colors'] = is_array($this->params['colors']) ? $this->params['colors'] : [$this->params['colors']];
 

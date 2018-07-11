@@ -1,10 +1,6 @@
-# Captcha integration for the Laravel 5
+# Captcha integration for the Laravel 5 (Deprecated)
+### THIS VERSION IS NO LONGER SUPPORTED
 Package information:
-
-[![Latest Stable Version](https://poser.pugx.org/bonecms/laravel-captcha/v/stable)](https://packagist.org/packages/bonecms/laravel-captcha)
-[![Total Downloads](https://poser.pugx.org/bonecms/laravel-captcha/downloads)](https://packagist.org/packages/bonecms/laravel-captcha)
-[![License](https://poser.pugx.org/bonecms/laravel-captcha/license)](https://packagist.org/packages/bonecms/laravel-captcha)
-
 [The new version is here](https://github.com/igoshev/laravel-captcha)
 
 ## Installing Laravel Captcha Composer Package
@@ -90,10 +86,10 @@ return [
 	|--------------------------------------------------------------------------
 	| Font
 	|--------------------------------------------------------------------------
-	| Supported: "DroidSerif".
+	| Supported: "IndiraK".
 	|
 	*/
-	'font' => 'DroidSerif',
+	'font' => 'IndiraK',
 
 	/*
 	|--------------------------------------------------------------------------
