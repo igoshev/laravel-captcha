@@ -1,5 +1,5 @@
 # Captcha integration for the Laravel 5 (Deprecated)
-### THIS VERSION IS NO LONGER SUPPORTED
+### !!! THIS VERSION IS NO LONGER SUPPORTED
 Package information:
 [The new version is here](https://github.com/igoshev/laravel-captcha)
 
