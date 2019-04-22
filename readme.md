@@ -270,6 +270,7 @@ Supported languages:
 * Portuguese
 * Russian
 * Spanish
+* Turkish
 * Ukrainian
 ```bash
 php artisan vendor:publish --provider="Igoshev\Captcha\Providers\CaptchaServiceProvider" --tag="lang"
