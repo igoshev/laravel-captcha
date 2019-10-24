@@ -51,6 +51,10 @@ class Captcha
 
         $this->params['background'] = is_array($this->params['background']) ? $this->params['background'] : [$this->params['background']];
         $this->params['colors']     = is_array($this->params['colors']) ? $this->params['colors'] : [$this->params['colors']];
+
+        if (! file_exists($this->params['font'])) {
+            $this->params['font'] = __DIR__ . '/../resources/fonts/IndiraK.ttf';
+        }
     }
 
     /**
@@ -95,12 +99,12 @@ class Captcha
      */
     public function getView()
     {
-        return view('igoshev::captcha.image', [
-            'route' => route('igoshev.captcha.image') . '?' . mt_rand(),
-            'title' => trans('igoshev::captcha.update_code'),
-            'width' => config('igoshev.captcha.width'),
-            'height' => config('igoshev.captcha.height'),
-            'input_id' => config('igoshev.captcha.inputId'),
+        return view('bone::captcha.image', [
+            'route'    => route('bone.captcha.image') . '?' . mt_rand(),
+            'title'    => trans('bone::captcha.update_code'),
+            'width'    => config('bone.captcha.width'),
+            'height'   => config('bone.captcha.height'),
+            'input_id' => config('bone.captcha.inputId'),
         ]);
     }
 }

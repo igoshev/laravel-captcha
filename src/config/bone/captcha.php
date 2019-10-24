@@ -17,8 +17,8 @@ return [
     |
     */
     'routes' => [
-        'image'     => 'igoshev/captcha/image',
-        'image_tag' => 'igoshev/captcha/image_tag'
+        'image'     => 'captcha/image',
+        'image_tag' => 'captcha/image_tag'
     ],
 
     /*
@@ -69,10 +69,10 @@ return [
     |--------------------------------------------------------------------------
     | Font
     |--------------------------------------------------------------------------
-    | Supported: "DroidSerif".
+    | Supported: "IndiraK".
     |
     */
-    'font' => base_path('vendor/bonecms/laravel-captcha/src/resources/fonts/DroidSerif/DroidSerif.ttf'),
+    'font' => base_path('vendor/bonecms/laravel-captcha/src/resources/fonts/IndiraK.ttf'),
 
     /*
     |--------------------------------------------------------------------------
@@ -90,7 +90,7 @@ return [
     | Spacing between letters in pixels.
     |
     */
-    'letterSpacing' => 2,
+    'letterSpacing' => 4,
 
     /*
     |--------------------------------------------------------------------------

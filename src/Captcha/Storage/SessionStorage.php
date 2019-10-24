@@ -2,18 +2,35 @@
 
 namespace Igoshev\Captcha\Captcha\Storage;
 
-use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
 
 class SessionStorage implements StorageInterface
 {
-    protected $key = 'igoshev_captcha';
+    /**
+     * @var \Illuminate\Session\Store
+     */
+    private $session;
+
+    /**
+     * @var string
+     */
+    private $key = 'bone_captcha';
+
+    /**
+     * SessionStorage constructor.
+     * @param Request $request
+     */
+    public function __construct(Request $request)
+    {
+        $this->session = $request->session();
+    }
 
     /**
      * @inheritdoc
      */
     public function push($code)
     {
-        session([$this->key => $code]);
+        $this->session->put($this->key, $code);
     }
 
     /**
@@ -21,12 +38,11 @@ class SessionStorage implements StorageInterface
      */
     public function pull()
     {
-        $bone_captcha = session($this->key);
-
-        if (! empty($bone_captcha)) {
-            Session::forget($this->key);
+        $code = $this->session->get($this->key);
+        if (! empty($code)) {
+            $this->session->forget($this->key);
         }
 
-        return $bone_captcha;
+        return $code;
     }
 }

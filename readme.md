@@ -13,17 +13,14 @@ Note: If you do not have Composer yet, you can install it by following the instr
 ```bash
 composer require bonecms/laravel-captcha
 ```
-#### Step 2. Register the Laravel Captcha service provider
+#### Step 2 for Laravel 5.5 and below. Register the Laravel Captcha service provider
 {LARAVEL_ROOT}/config/app.php:
 ```php
 'providers' => [
     ...
-    Igoshev\Captcha\Providers\IgoshevCaptchaServiceProvider::class,
+    Igoshev\Captcha\Providers\CaptchaServiceProvider::class,
 ],
 ```
-#### Step 3. 
-It must be specified middleware "web" where the captcha validation.
-Since version 5.3 routes contains middleware "web" already. It defined by the provider "App\ProvidersRouteServiceProvider".
 
 ## Examples
 ![example1](examples/image1.png)
@@ -47,7 +44,6 @@ Generate a Captcha markup in your Controller:
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use LaravelCaptcha\Facades\Captcha;
 
 class MyController extends Controller 
 {
@@ -73,7 +69,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use LaravelCaptcha\Facades\Captcha;
 
 class MyController extends Controller 
 {
@@ -94,7 +89,7 @@ class MyController extends Controller
 ```
 ### Configuration
 ```bash
-php artisan vendor:publish --provider="Igoshev\Captcha\Providers\IgoshevCaptchaServiceProvider" --tag="config"
+php artisan vendor:publish --provider="Igoshev\Captcha\Providers\CaptchaServiceProvider" --tag="config"
 ```
 ```php
 <?php
@@ -116,8 +111,8 @@ return [
     |
     */
     'routes' => [
-        'image'     => 'igoshev/captcha/image',
-        'image_tag' => 'igoshev/captcha/image_tag'
+        'image'     => 'captcha/image',
+        'image_tag' => 'captcha/image_tag'
     ],
 
     /*
@@ -168,10 +163,10 @@ return [
     |--------------------------------------------------------------------------
     | Font
     |--------------------------------------------------------------------------
-    | Supported: "DroidSerif".
+    | Supported: "IndiraK".
     |
     */
-    'font' => base_path('vendor/bonecms/laravel-captcha/src/resources/fonts/DroidSerif/DroidSerif.ttf'),
+    'font' => base_path('vendor/bonecms/laravel-captcha/src/resources/fonts/IndiraK.ttf'),
 
     /*
     |--------------------------------------------------------------------------
@@ -260,11 +255,28 @@ return [
 ];
 ```
 ### Localization
+Supported languages: 
+* Arabic
+* Chinese
+* Dutch
+* English
+* French
+* German
+* Hindi
+* Italian
+* Japanese
+* Korean
+* Persian
+* Portuguese
+* Russian
+* Spanish
+* Turkish
+* Ukrainian
 ```bash
-php artisan vendor:publish --provider="Igoshev\Captcha\Providers\IgoshevCaptchaServiceProvider" --tag="lang"
+php artisan vendor:publish --provider="Igoshev\Captcha\Providers\CaptchaServiceProvider" --tag="lang"
 ```
 
 ### View
 ```bash
-php artisan vendor:publish --provider="Igoshev\Captcha\Providers\IgoshevCaptchaServiceProvider" --tag="views"
+php artisan vendor:publish --provider="Igoshev\Captcha\Providers\CaptchaServiceProvider" --tag="views"
 ```
