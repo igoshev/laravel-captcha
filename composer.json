@@ -15,7 +15,8 @@
         "source": "https://github.com/igoshev/laravel-captcha"
     },
     "require": {
-        "php": ">=5.6.4"
+        "php": ">=5.6.4",
+        "ext-gd": "*"
     },
     "autoload": {
         "psr-4": {

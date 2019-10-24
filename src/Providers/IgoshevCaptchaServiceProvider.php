@@ -37,7 +37,7 @@ class IgoshevCaptchaServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('igoshev_captcha', function (Application $app) {
+        $this->app->singleton('igoshev_captcha', static function (Application $app) {
             $config = $app['config']['igoshev']['captcha'];
 
             $storage   = $app->make($config['storage']);
@@ -59,7 +59,7 @@ class IgoshevCaptchaServiceProvider extends ServiceProvider
             return;
         }
 
-        Blade::directive(config('igoshev.captcha.blade'), function () {
+        Blade::directive(config('igoshev.captcha.blade'), static function () {
             return "<?php echo Igoshev\\Captcha\\Facades\\Captcha::getView() ?>";
         });
     }
@@ -73,7 +73,7 @@ class IgoshevCaptchaServiceProvider extends ServiceProvider
             'middleware' => config('igoshev.captcha.middleware', 'web'),
             'namespace'  => 'Igoshev\Captcha\Controllers',
             'as'         => 'igoshev.captcha.'
-        ], function ($router) {
+        ], static function ($router) {
             $router->get(config('igoshev.captcha.routes.image'), 'CaptchaController@image')->name('image');
             $router->get(config('igoshev.captcha.routes.image_tag'), 'CaptchaController@imageTag')->name('image.tag');
         });
