@@ -23,8 +23,10 @@ class GeneratorWaves extends AbstractGenerator implements GeneratorInterface
         $img2 = imagecreatetruecolor($params['width'], $params['height']);
 
         //Print text
-        $x = ($params['width'] - strlen($str) * ($params['letterSpacing'] + $params['fontSize'] * 0.66)) / 2;
-        for ($i = 0; $i < strlen($str); $i++) {
+        $strlen = strlen($str);
+        $x      = ($params['width'] - $strlen * ($params['letterSpacing'] + $params['fontSize'] * 0.66)) / 2;
+
+        for ($i = 0; $i < $strlen; $i++) {
             ImageTTFtext(
                 $img1,
                 $params['fontSize'],
