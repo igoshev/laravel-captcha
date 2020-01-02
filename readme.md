@@ -5,8 +5,6 @@ Package information:
 [![Total Downloads](https://poser.pugx.org/bonecms/laravel-captcha/downloads)](https://packagist.org/packages/bonecms/laravel-captcha)
 [![License](https://poser.pugx.org/bonecms/laravel-captcha/license)](https://packagist.org/packages/bonecms/laravel-captcha)
 
-For Laravel 5.3 and below - [v1.1](https://github.com/igoshev/laravel-captcha/tree/1.1)
-
 | Captcha | Laravel |
 |---|---|
 | [v2.2](https://github.com/igoshev/laravel-captcha/tree/2.2)  | 5.5 - 6.x |
