@@ -100,7 +100,9 @@ class Captcha
     public function getView()
     {
         $route = route('bone.captcha.image', [], false);
-        $route = secure_url($route);
+        if (mb_strpos(config('app.url'), 'https://') !== false) {
+            $route = secure_url($route);
+        }
         $route .= '?_=' . mt_rand();
 
         return view('bone::captcha.image', [
