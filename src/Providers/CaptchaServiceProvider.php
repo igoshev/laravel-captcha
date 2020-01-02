@@ -21,9 +21,9 @@ class CaptchaServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../resources/views/vendor/bone', 'bone');
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang/vendor/bone', 'bone');
 
-        $this->publishes([__DIR__ . '/../config' => config_path()], 'config');
-        $this->publishes([__DIR__ . '/../resources/lang' => resource_path('lang')], 'lang');
-        $this->publishes([__DIR__ . '/../resources/views' => resource_path('views')], 'views');
+        $this->publishes([__DIR__ . '/../config' => config_path()], 'bone-captcha-config');
+        $this->publishes([__DIR__ . '/../resources/lang' => resource_path('lang')], 'bone-captcha-lang');
+        $this->publishes([__DIR__ . '/../resources/views' => resource_path('views')], 'bone-captcha-views');
 
         $this->registerRoutes();
         $this->registerBladeDirectives();
@@ -60,7 +60,7 @@ class CaptchaServiceProvider extends ServiceProvider
         }
 
         Blade::directive(config('bone.captcha.blade'), static function () {
-            return "<?php echo Igoshev\\Captcha\\Facades\\Captcha::getView() ?>";
+            return '<?php echo Igoshev\Captcha\Facades\Captcha::getView() ?>';
         });
     }
 

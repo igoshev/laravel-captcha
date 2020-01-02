@@ -1,4 +1,4 @@
-# Captcha integration for the Laravel 5
+# Captcha integration for the Laravel
 Package information:
 
 [![Latest Stable Version](https://poser.pugx.org/bonecms/laravel-captcha/v/stable)](https://packagist.org/packages/bonecms/laravel-captcha)
@@ -58,7 +58,7 @@ Showing a Captcha in a View:
 ```html
 ...
 @captcha
-<input type="text" id="captcha" name="captcha">
+<input type="text" id="captcha" name="captcha" autocomplete="off">
  ...
 ```
 Check user input during form submission:

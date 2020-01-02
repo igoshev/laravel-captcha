@@ -99,8 +99,12 @@ class Captcha
      */
     public function getView()
     {
+        $route = route('bone.captcha.image', [], false);
+        $route = secure_url($route);
+        $route .= '?_=' . mt_rand();
+
         return view('bone::captcha.image', [
-            'route'    => route('bone.captcha.image') . '?' . mt_rand(),
+            'route'    => $route,
             'title'    => trans('bone::captcha.update_code'),
             'width'    => config('bone.captcha.width'),
             'height'   => config('bone.captcha.height'),
