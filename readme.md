@@ -1,32 +1,9 @@
 # Captcha integration for the Laravel
-Package information:
 
 [![Latest Stable Version](https://poser.pugx.org/bonecms/laravel-captcha/v/stable)](https://packagist.org/packages/bonecms/laravel-captcha)
 [![Total Downloads](https://poser.pugx.org/bonecms/laravel-captcha/downloads)](https://packagist.org/packages/bonecms/laravel-captcha)
 [![License](https://poser.pugx.org/bonecms/laravel-captcha/license)](https://packagist.org/packages/bonecms/laravel-captcha)
 
-| Captcha | Laravel |
-|---|---|
-| [v2.2](https://github.com/igoshev/laravel-captcha/tree/2.2)  | 5.5 - 6.x |
-| [v2.1](https://github.com/igoshev/laravel-captcha/tree/2.1) | 5.4  |
-| [v1.1](https://github.com/igoshev/laravel-captcha/tree/1.1) | 5.3 and below |
-
-## Installing Laravel Captcha Composer Package
-Note: If you do not have Composer yet, you can install it by following the instructions on https://getcomposer.org
-#### Step 1. Install package
-```bash
-composer require bonecms/laravel-captcha
-```
-#### Step 2 for Laravel 5.5 and below. Register the Laravel Captcha service provider
-{LARAVEL_ROOT}/config/app.php:
-```php
-'providers' => [
-    ...
-    Igoshev\Captcha\Providers\CaptchaServiceProvider::class,
-],
-```
-
-## Examples
 ![example1](examples/image1.png)
 ![example2](examples/image2.png)
 ![example3](examples/image3.png)
@@ -39,6 +16,31 @@ composer require bonecms/laravel-captcha
 ![example10](examples/image10.png)
 ![example11](examples/image11.png)
 ![example12](examples/image12.png)
+### [Live Demo](https://laravel.bonecms.tech/laravel-captcha)
+
+## Installing Laravel Captcha Composer Package
+Note: If you do not have Composer yet, you can install it by following the instructions on https://getcomposer.org
+
+#### Step 1. Install package
+```bash
+composer require bonecms/laravel-captcha
+```
+
+| Captcha | Laravel |
+|---|---|
+| [v2.2](https://github.com/igoshev/laravel-captcha/tree/2.2)  | 5.5 - 6.x |
+| [v2.1](https://github.com/igoshev/laravel-captcha/tree/2.1) | 5.4  |
+| [v1.1](https://github.com/igoshev/laravel-captcha/tree/1.1) | 5.3 and below |
+
+
+#### Step 2 for Laravel 5.5 and below. Register the Laravel Captcha service provider
+{LARAVEL_ROOT}/config/app.php:
+```php
+'providers' => [
+    ...
+    Igoshev\Captcha\Providers\CaptchaServiceProvider::class,
+],
+```
 
 ## Using Laravel Captcha
 Generate a Captcha markup in your Controller:
