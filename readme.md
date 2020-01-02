@@ -7,6 +7,12 @@ Package information:
 
 For Laravel 5.3 and below - [v1.1](https://github.com/igoshev/laravel-captcha/tree/1.1)
 
+| Captcha | Laravel |
+|---|---|
+| [v2.2](https://github.com/igoshev/laravel-captcha/tree/2.2)  | 5.5 - 6.x |
+| [v2.1](https://github.com/igoshev/laravel-captcha/tree/2.1) | 5.4  |
+| [v1.1](https://github.com/igoshev/laravel-captcha/tree/1.1) | 5.3 and below |
+
 ## Installing Laravel Captcha Composer Package
 Note: If you do not have Composer yet, you can install it by following the instructions on https://getcomposer.org
 #### Step 1. Install package
