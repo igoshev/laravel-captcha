@@ -119,7 +119,6 @@ class Captcha
         ]);
     }
 
-
     /**
      * @return null|string
      */
