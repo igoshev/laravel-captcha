@@ -1,4 +1,4 @@
-# Captcha integration for the Laravel 5
+# Captcha integration for Laravel 5
 Package information:
 
 [![Latest Stable Version](https://poser.pugx.org/bonecms/laravel-captcha/v/stable)](https://packagist.org/packages/bonecms/laravel-captcha)
