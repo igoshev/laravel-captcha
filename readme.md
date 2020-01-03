@@ -1,4 +1,4 @@
-# Captcha integration for the Laravel 5
+# Captcha integration for Laravel 5
 Package information:
 
 [![Latest Stable Version](https://poser.pugx.org/bonecms/laravel-captcha/v/stable)](https://packagist.org/packages/bonecms/laravel-captcha)
@@ -279,3 +279,8 @@ php artisan vendor:publish --provider="Igoshev\Captcha\Providers\CaptchaServiceP
 ```bash
 php artisan vendor:publish --provider="Igoshev\Captcha\Providers\CaptchaServiceProvider" --tag="views"
 ```
+
+## Donation
+If this project help you reduce time to develop, you can give me a cup of coffee :)
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/dmigoshev)
