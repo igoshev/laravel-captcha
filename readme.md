@@ -95,7 +95,7 @@ class MyController extends Controller
 ```
 ### Configuration
 ```bash
-php artisan vendor:publish --provider="Igoshev\Captcha\Providers\CaptchaServiceProvider" --tag="config"
+php artisan vendor:publish --tag=bone-captcha-config
 ```
 ```php
 <?php
@@ -279,12 +279,12 @@ Supported languages:
 * Turkish
 * Ukrainian
 ```bash
-php artisan vendor:publish --provider="Igoshev\Captcha\Providers\CaptchaServiceProvider" --tag="lang"
+php artisan vendor:publish --tag=bone-captcha-lang
 ```
 
 ### View
 ```bash
-php artisan vendor:publish --provider="Igoshev\Captcha\Providers\CaptchaServiceProvider" --tag="views"
+php artisan vendor:publish --tag=bone-captcha-views
 ```
 
 ## Donation
