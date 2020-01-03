@@ -1,6 +1,6 @@
 {
     "name": "bonecms/laravel-captcha",
-    "description": "Captcha integration for the Laravel 5",
+    "description": "Captcha integration for the Laravel",
     "keywords": ["captcha", "laravel captcha"],
     "license": "MIT",
     "homepage": "https://github.com/igoshev/laravel-captcha",
