@@ -9,6 +9,11 @@ use Igoshev\Captcha\Captcha\Code\CodeInterface;
 class Captcha
 {
     /**
+     * @var string
+     */
+    private $correctCode;
+
+    /**
      * @var CodeInterface
      */
     private $code;
@@ -83,7 +88,7 @@ class Captcha
      */
     public function validate($code)
     {
-        $correctCode = $this->storage->pull();
+        $correctCode = $this->getCorrectCode();
 
         if (! empty($correctCode)) {
             return mb_strtolower($correctCode) === mb_strtolower($code);
@@ -106,5 +111,17 @@ class Captcha
             'height'   => config('bone.captcha.height'),
             'input_id' => config('bone.captcha.inputId'),
         ]);
+    }
+
+    /**
+     * @return null|string
+     */
+    protected function getCorrectCode()
+    {
+        if (! isset($this->correctCode)) {
+            $this->correctCode = $this->storage->pull();
+        }
+
+        return $this->correctCode;
     }
 }
