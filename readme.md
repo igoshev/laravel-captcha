@@ -28,7 +28,7 @@ composer require bonecms/laravel-captcha
 
 | Captcha | Laravel |
 |---|---|
-| [v2.2](https://github.com/igoshev/laravel-captcha/tree/2.2)  | 5.5 - 6.x |
+| [v2.2](https://github.com/igoshev/laravel-captcha/tree/2.2)  | 5.5 - 7.x |
 | [v2.1](https://github.com/igoshev/laravel-captcha/tree/2.1) | 5.4  |
 | [v1.1](https://github.com/igoshev/laravel-captcha/tree/1.1) | 5.3 and below |
 
