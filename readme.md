@@ -16,7 +16,6 @@
 ![example10](examples/image10.png)
 ![example11](examples/image11.png)
 ![example12](examples/image12.png)
-### [Live Demo](https://laravel.bonecms.tech/laravel-captcha)
 
 ## Installing Laravel Captcha Composer Package
 Note: If you do not have Composer yet, you can install it by following the instructions on https://getcomposer.org
