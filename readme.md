@@ -260,7 +260,7 @@ return [
 ];
 ```
 ### Localization
-Supported languages: 
+Supported languages (17): 
 * Arabic
 * Chinese
 * Dutch
@@ -268,6 +268,7 @@ Supported languages:
 * French
 * German
 * Hindi
+* Indonesian
 * Italian
 * Japanese
 * Korean
