@@ -278,6 +278,8 @@ Supported languages (17):
 * Spanish
 * Turkish
 * Ukrainian
+* Urdu
+* Malay
 ```bash
 php artisan vendor:publish --tag=bone-captcha-lang
 ```
