@@ -1,5 +1,5 @@
 {
-    "name": "bonecms/laravel-captcha",
+    "name": "deltaspike/laravel-captcha",
     "description": "Captcha integration for Laravel",
     "keywords": ["captcha", "laravel captcha"],
     "license": "MIT",
